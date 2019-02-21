@@ -40,8 +40,6 @@ const makeRequest = (url, method = 'GET') => {
          .then(response => response.json())
          // The function below is set up for you to manipulate the data as you need.
          .then(data => {
-            console.log(data);
-
             // Start manipulation
 
             for (let i = 0; i < data.length; i++) {
