@@ -79,4 +79,6 @@ const makeRequest = (url, method = 'GET') => {
    }
 };
 
-makeRequest('https://api.github.com/users/N-bred/repos');
+makeRequest(
+   'https://api.github.com/users/N-bred/repos?sort=pushed?direction=asc'
+);
