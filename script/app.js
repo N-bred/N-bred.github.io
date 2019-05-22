@@ -65,7 +65,7 @@ const makeRequest = (url, method = 'GET') => {
                   appendEl(a, li);
                   appendEl(li, ul);
                } else {
-                  a.href = `https://n-bred.github.io/${data[i].name}/`;
+                  a.href = `https://n-bred.github.io/${data[i].name}/index.html`;
                   a.target = '_blank';
                   a.innerHTML = `${data[i].name}`;
 
