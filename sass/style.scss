@@ -205,6 +205,7 @@ body {
     background: $white;
     border: 3px solid $light-black;
     &__img {
+      border-bottom: 3px solid $light-black;
       img {
         width: 100%;
         display: block;
@@ -266,7 +267,40 @@ body {
         color: $white;
         border: 1px solid currentColor;
         background: $light-black;
+
+        &:hover {
+          background: darken($light-black, 25%);
+        }
       }
+    }
+  }
+  .pagination {
+    margin-top: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media only screen and (max-width: 420px) {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+  .prevBtn,
+  .nextBtn {
+    text-decoration: none;
+    padding: 1rem 2.5rem;
+    background: $light-black;
+    color: $white;
+    margin-left: 2rem;
+    border-radius: 3px;
+
+    @media only screen and (max-width: 420px) {
+      margin: 1rem 0;
+      text-align: center;
+    }
+
+    &:hover {
+      background: darken($light-black, 25%);
     }
   }
 }
