@@ -1,0 +1,187 @@
+$gradient: linear-gradient(#fff 40%, #ddd 70%, #fff 100%);
+$white: #fff;
+
+html {
+  box-sizing: border-box;
+  font-size: 62.2%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: sans-serif;
+  overflow-x: hidden;
+  background: #191919;
+}
+
+.container {
+  max-width: 120rem;
+  margin: 0 auto;
+}
+// Loader
+.loader {
+  width: 100%;
+  height: 100vh;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+
+  // Change this to 1 when finished
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+
+  &-done {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &-circle {
+    height: 20rem;
+    width: 20rem;
+    background: $gradient;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &::after {
+      content: '';
+      position: absolute;
+      height: 17rem;
+      width: 17rem;
+      background: #000;
+      border-radius: 50%;
+      z-index: 10;
+    }
+
+    &-text {
+      color: #fff;
+      z-index: 15;
+      font-size: 2.2rem;
+      animation: tilt 1000ms ease-in infinite alternate;
+    }
+  }
+
+  &-blur {
+    height: 20rem;
+    width: 20rem;
+    background: $gradient;
+    position: absolute;
+    border-radius: 50%;
+    animation: rotate 1000ms infinite alternate;
+
+    &--1 {
+      filter: blur(0.5rem);
+      animation-delay: 0;
+    }
+    &--2 {
+      filter: blur(1rem);
+      animation-delay: 500ms;
+    }
+    &--3 {
+      filter: blur(2.5rem);
+      animation-delay: 1000ms;
+    }
+    &--4 {
+      filter: blur(5rem);
+      animation-delay: 2000ms;
+    }
+  }
+}
+
+// Header
+.header {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.bio {
+  &__img {
+    width: 20rem;
+    height: 20rem;
+    margin: 0 auto;
+    border: 2px solid #ffff;
+    border-radius: 3px;
+    .profile-img {
+      width: 100%;
+      display: block;
+    }
+  }
+
+  &__name,
+  &__description {
+    margin: 2.5rem 0;
+    text-align: center;
+    &-text {
+      color: #fff;
+      font-size: 3.5rem;
+    }
+  }
+
+  &__description {
+    margin: 0 0 2.5rem;
+
+    &-text {
+      font-size: 1.8rem;
+    }
+  }
+}
+
+.btn__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  text-decoration: none;
+  color: $white;
+  border-radius: 3px;
+  border: 3px solid $white;
+  padding: 1.5rem 2.5rem;
+  transition-property: background, border, color;
+  transition: 0.3s ease-in-out;
+
+  &:hover {
+    background: $white;
+    color: #191919;
+    border-color: currentColor;
+  }
+}
+
+// Main
+
+// Animations
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  100% {
+    transform: rotate(360deg) scale(1.2);
+  }
+}
+
+@keyframes tilt {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

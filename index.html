@@ -5,6 +5,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Nicolas Caballero | Web Developer</title>
+    <link rel="stylesheet" href="./sass/style.css" />
   </head>
-  <body></body>
+  <body>
+    <div class="loader">
+      <span class="loader-circle">
+        <p class="loader-circle-text">
+          Loading...
+        </p>
+      </span>
+      <span class="loader-blur loader-blur--1"></span>
+      <span class="loader-blur loader-blur--2"></span>
+      <span class="loader-blur loader-blur--3"></span>
+      <span class="loader-blur loader-blur--4"></span>
+    </div>
+
+    <header class="header">
+      <div class="container">
+        <div class="bio">
+          <div class="bio__img">
+            <a href="#" class="profile-link">
+              <img
+                src="./fox.jpg"
+                alt="Profile img"
+                id="profile-img"
+                class="profile-img"
+              />
+            </a>
+          </div>
+          <div class="bio__name">
+            <h1 id="name" class="bio__name-text">Nicolas Caballero</h1>
+          </div>
+          <div class="bio__description">
+            <p id="description" class="bio__description-text">
+              Ima self taught web dev with such a lust for revenge... WHOOOO
+            </p>
+          </div>
+        </div>
+
+        <div class="btn__container">
+          <a href="#" class="btn" id="btn-projects">See all projects</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="container">
+        <div class="cards-container">
+          <div class="card">
+            <!-- Card Img -->
+            <div class="card__img">
+              <a href="#" class="card__img-link">
+                <div class="card__img-illustration">
+                  <span class="card__img-blur"></span>
+                  <span class="card__img-blur"></span>
+                  <span class="card__img-blur"></span>
+                </div>
+              </a>
+            </div>
+
+            <!-- End card Img -->
+
+            <div class="card__title">
+              <h3 class="card__title-text">Natours project</h3>
+            </div>
+
+            <div class="card__description">
+              <p class="card__description-text">
+                THis is a project made by me heheh
+              </p>
+            </div>
+
+            <div class="card__btns">
+              <a href="" class="card__btn btn btn-outline">See on github</a>
+              <a href="" class="card__btn btn">See demo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="./script/app.js"></script>
+  </body>
 </html>
