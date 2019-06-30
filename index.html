@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Nicolas Caballero | Web Developer</title>
-    <link rel="stylesheet" href="./sass/style.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="shortcut icon" href="./fox.jpg" type="image/x-icon" />
   </head>
-  <body>
+  <body class="on-load">
     <div class="loader">
       <span class="loader-circle">
         <p class="loader-circle-text">
@@ -24,22 +25,19 @@
       <div class="container">
         <div class="bio">
           <div class="bio__img">
-            <a href="#" class="profile-link">
-              <img
-                src="./fox.jpg"
-                alt="Profile img"
-                id="profile-img"
-                class="profile-img"
-              />
+            <a
+              href="https://github.com/N-bred"
+              target="_blank"
+              class="profile-link"
+            >
+              <img alt="Profile img" id="profile-img" class="profile-img" />
             </a>
           </div>
           <div class="bio__name">
-            <h1 id="name" class="bio__name-text">Nicolas Caballero</h1>
+            <h1 id="name" class="bio__name-text"></h1>
           </div>
           <div class="bio__description">
-            <p id="description" class="bio__description-text">
-              Ima self taught web dev with such a lust for revenge... WHOOOO
-            </p>
+            <p id="description" class="bio__description-text"></p>
           </div>
         </div>
 
@@ -51,40 +49,21 @@
 
     <main class="main">
       <div class="container">
-        <div class="cards-container">
-          <div class="card">
-            <!-- Card Img -->
-            <div class="card__img">
-              <a href="#" class="card__img-link">
-                <div class="card__img-illustration">
-                  <span class="card__img-blur"></span>
-                  <span class="card__img-blur"></span>
-                  <span class="card__img-blur"></span>
-                </div>
-              </a>
-            </div>
-
-            <!-- End card Img -->
-
-            <div class="card__title">
-              <h3 class="card__title-text">Natours project</h3>
-            </div>
-
-            <div class="card__description">
-              <p class="card__description-text">
-                THis is a project made by me heheh
-              </p>
-            </div>
-
-            <div class="card__btns">
-              <a href="" class="card__btn btn btn-outline">See on github</a>
-              <a href="" class="card__btn btn">See demo</a>
-            </div>
-          </div>
-        </div>
+        <h1 class="title">
+          Projects
+        </h1>
+        <div class="cards-container"></div>
       </div>
     </main>
 
+    <footer class="footer">
+      <h2 class="copy">
+        <a href="https://github.com/N-bred" target="_blank"
+          >Nicolas Caballero</a
+        >
+        &copy; <span id="year"></span> - All rights reserved
+      </h2>
+    </footer>
     <script src="./script/app.js"></script>
   </body>
 </html>

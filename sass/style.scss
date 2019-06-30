@@ -1,5 +1,7 @@
-$gradient: linear-gradient(#fff 40%, #ddd 70%, #fff 100%);
+$yellow: #f7f119;
+$gradient: linear-gradient(#fff 40%, $yellow 70%, #fff 100%);
 $white: #fff;
+$light-black: #191919;
 
 html {
   box-sizing: border-box;
@@ -18,9 +20,11 @@ body {
   font-size: 1.6rem;
   font-family: sans-serif;
   overflow-x: hidden;
-  background: #191919;
 }
 
+.on-load {
+  overflow: hidden;
+}
 .container {
   max-width: 120rem;
   margin: 0 auto;
@@ -29,14 +33,14 @@ body {
 .loader {
   width: 100%;
   height: 100vh;
-  background: #000;
+  background: $light-black;
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
 
   // Change this to 1 when finished
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.3s ease-in-out;
 
   &-done {
@@ -59,7 +63,7 @@ body {
       position: absolute;
       height: 17rem;
       width: 17rem;
-      background: #000;
+      background: $light-black;
       border-radius: 50%;
       z-index: 10;
     }
@@ -107,9 +111,13 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background: $light-black;
 }
 
 .bio {
+  @media only screen and (max-width: 420px) {
+    padding: 0 2.5rem;
+  }
   &__img {
     width: 20rem;
     height: 20rem;
@@ -165,6 +173,125 @@ body {
 
 // Main
 
+.main {
+  background: #dfdfdf;
+  width: 100%;
+  min-height: 100vh;
+  padding: 5rem;
+
+  @media only screen and (max-width: 420px) {
+    padding: 5rem 2.5rem;
+  }
+
+  .title {
+    text-align: center;
+    margin-bottom: 5rem;
+    font-size: 4rem;
+  }
+
+  .cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    grid-gap: 2rem;
+    grid-row-gap: 4rem;
+
+    @media only screen and (max-width: 420px) {
+      grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    }
+  }
+
+  .card {
+    width: 100%;
+    background: $white;
+    border: 3px solid $light-black;
+    &__img {
+      img {
+        width: 100%;
+        display: block;
+        height: 100%;
+      }
+    }
+
+    &__title {
+      text-align: center;
+      padding: 2.5rem 0;
+    }
+
+    &__description {
+      padding: 0 2.5rem;
+      align-self: flex-start;
+      height: 10rem;
+      overflow-y: scroll;
+
+      &-text {
+        line-height: 2.5rem;
+      }
+    }
+
+    &__btns {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 2.5rem;
+      padding: 0 2.5rem 2.5rem;
+
+      @media only screen and (max-width: 420px) {
+        flex-direction: column;
+      }
+    }
+
+    &__btn {
+      text-decoration: none;
+      padding: 1rem 2.5rem;
+      border-radius: 3px;
+
+      @media only screen and (max-width: 420px) {
+        width: 100%;
+        text-align: center;
+        margin-top: 1.5rem;
+      }
+      &--white {
+        color: $light-black;
+        border: 1px solid currentColor;
+        transition-property: color, background;
+        transition: 0.3s ease-in;
+
+        &:hover {
+          color: $white;
+          background: $light-black;
+        }
+      }
+
+      &--dark {
+        color: $white;
+        border: 1px solid currentColor;
+        background: $light-black;
+      }
+    }
+  }
+}
+
+.footer {
+  background: $light-black;
+  padding: 2.5rem;
+
+  .copy,
+  a {
+    color: $white;
+    text-align: center;
+    text-decoration: none;
+
+    @media only screen and (max-width: 420px) {
+      font-size: 1.6rem;
+    }
+  }
+
+  a {
+    &:hover {
+      color: darken($white, 10%);
+    }
+  }
+}
 // Animations
 @keyframes rotate {
   0% {
