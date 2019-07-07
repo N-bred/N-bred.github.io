@@ -101,92 +101,6 @@ window.addEventListener('load', function() {
       return template;
     };
 
-    // Limit to how many post are shown
-    const limit = 6;
-
-    // Pagination object, acts as a state
-    const pagination = {
-      initial: 1,
-      final: limit
-    };
-
-    // Variables to select the elements that control pagination
-    const prevBtn = document.getElementById('prev');
-    const nextBtn = document.getElementById('next');
-
-    // Function than handles the previous pagination.
-    const prevPage = function(e, initial, finish) {
-      e.preventDefault();
-
-      // Resets the html of the container
-      cardsContainerElement.innerHTML = '';
-
-      // Make an api request to the repos api with the pagination settings
-      requestToReposApi
-        .then(data => {
-          renderToDOM(data, initial, finish);
-        })
-        .catch(err => console.log(err));
-    };
-
-    // Function that handles the next pagination,
-    const nextPage = function(e, initial, finish) {
-      e.preventDefault();
-
-      // Resets the html of the cards container.
-      cardsContainerElement.innerHTML = '';
-
-      // Makes an api call to the repos api with the pagination settings
-      requestToReposApi
-        .then(data => {
-          renderToDOM(data, initial, finish);
-        })
-        .catch(err => console.log(err));
-    };
-
-    // Event listener on next button element.
-    nextBtn.addEventListener('click', e => {
-      // Increments the pagination set in the pagination object
-      pagination.initial += limit;
-      pagination.final += limit;
-
-      // Checks and makes sure that the numbers of the pagination doesn't pass the limit
-      if (pagination.initial >= pagination.total - limit) {
-        pagination.initial = pagination.total - limit;
-      }
-
-      if (pagination.final >= pagination.total) {
-        pagination.final = pagination.total - 1;
-      }
-
-      // Alerts the final result of not finding repos
-      if (pagination.final === pagination.total - 1) {
-        alert('No repos found');
-      }
-
-      // Call to next page function with the data
-      nextPage(e, pagination.initial, pagination.final);
-    });
-
-    // Event listener on prev button element.
-    prevBtn.addEventListener('click', e => {
-      // Modifies the pagination state,
-      pagination.initial -= limit;
-      pagination.final -= limit;
-
-      // Checks and makes sure that the numbers are not less than 1 or the limit
-      if (pagination.initial <= 1) {
-        pagination.initial = 1;
-      }
-
-      if (pagination.final <= limit) {
-        pagination.final = limit;
-      }
-
-      // Call to the prevPage function with all the data
-      prevPage(e, pagination.initial, pagination.final);
-    });
-
     // Function that will render content to the DOM based on the parameters set in pagination
     const renderToDOM = function(data, initial, next) {
       for (let i = initial; i <= next; i++) {
@@ -210,10 +124,7 @@ window.addEventListener('load', function() {
     // Request to the api
     requestToReposApi
       .then(data => {
-        renderToDOM(data, pagination.initial, pagination.final);
-
-        // Sets the total length of data into the pagination object
-        pagination.total = data.length;
+        renderToDOM(data, 0, data.length - 1);
       })
       .catch(err => console.log(err));
   })();
