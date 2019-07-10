@@ -42,6 +42,8 @@ window.addEventListener('load', function() {
   (function loadUserRepos() {
     // Variable to get the DOM element
     const cardsContainerElement = document.querySelector('.cards-container');
+    const paginationList = document.querySelector('.pagination__list');
+    const mainElement = document.querySelector('.main');
 
     // Variable with the repos api URI
     const reposApi =
@@ -101,30 +103,86 @@ window.addEventListener('load', function() {
       return template;
     };
 
-    // Function that will render content to the DOM based on the parameters set in pagination
-    const renderToDOM = function(data, initial, next) {
-      for (let i = initial; i <= next; i++) {
-        //  Checks if the data has the "has_pages" option set to true;
-        if (data[i].has_pages) {
-          // Variables with the info thats going to be passed to the createCard function.
-          const { description, name, html_url } = data[i];
+    /** Render function for both cards and pagination*/
 
-          // Variable with the URI of the front pic.
+    const render = function(data, currentPage = 1, limitPerPage = 6) {
+      // Array with projects filtered by has pages option
+      const projects = data.filter(project => project.has_pages);
+
+      // Everytime the render function is called, the container re-renders;
+      cardsContainerElement.innerHTML = '';
+      paginationList.innerHTML = '';
+
+      // Array that will contain the number of pages
+      const pagination = [];
+
+      /** Function that contains the logic for the pagination and the cards */
+      const eachProject = function(datas) {
+        // Pagination logic starts
+        const limit = limitPerPage;
+        let curPage = currentPage;
+        const indexOfLastPost = curPage * limit;
+        const indexOfFirstPost = indexOfLastPost - limit;
+        const currentPosts = datas.slice(indexOfFirstPost, indexOfLastPost);
+
+        for (let i = 1; i <= Math.ceil(datas.length / limit); i++) {
+          pagination.push(i);
+        }
+        // Pagination Logic Ends
+
+        // For each project in the currentPosts array, this will render a card;
+        currentPosts.forEach(project => {
+          const { description, name, html_url } = project;
+
           const imgUrl = `https://github.com/N-bred/${name}/blob/master/frontCard.png?raw=true`;
 
-          // Call to createCard function with the data retrieved from the api.
           const repoEl = createCard(name, description, html_url, name, imgUrl);
 
-          // Apppend each card to their container
           cardsContainerElement.innerHTML += repoEl;
-        }
-      }
+        });
+      };
+
+      // Call to the function that contains the logic for the pagination and the cards
+      eachProject(projects);
+
+      // Pagination rendering
+      pagination.forEach(page => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.setAttribute('href', '#');
+
+        a.innerText = page;
+
+        // For each button, an event listener is setted;
+        a.addEventListener('click', function(e) {
+          e.preventDefault();
+
+          // Smooth transition to the top of the main ELement
+          if (window.innerWidth <= 600) {
+            window.scrollTo({
+              top: mainElement.offsetTop,
+              left: 0,
+              behavior: 'smooth'
+            });
+          }
+
+          // Call to  the render function to re-render each time a button is clicked
+          render(projects, this.innerText, limitPerPage);
+        });
+
+        li.appendChild(a);
+        paginationList.appendChild(li);
+      });
     };
 
     // Request to the api
     requestToReposApi
       .then(data => {
-        renderToDOM(data, 0, data.length - 1);
+        if (window.innerWidth <= 600) {
+          render(data, 1, 3);
+        } else {
+          render(data, 1, 6);
+        }
       })
       .catch(err => console.log(err));
   })();
