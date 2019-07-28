@@ -76,7 +76,7 @@ window.addEventListener('load', function() {
   <div class="card">
         
             <div class="card__img">
-              <a href="https://n-bred.github.io/${page}/index.html" class="card__img-link" target="_blank">
+              <a href="https://n-bred.github.io/${page}/" class="card__img-link" target="_blank">
                 <img src="${img}" alt="${formatData(title)}" />
               </a>
             </div>
@@ -94,7 +94,7 @@ window.addEventListener('load', function() {
 
             <div class="card__btns">
               <a href="${github}" class="card__btn card__btn--white" target="_blank">See on Github</a>
-              <a href="https://n-bred.github.io/${page}/index.html" class="card__btn  card__btn--dark" target="_blank">See Demo</a>
+              <a href="https://n-bred.github.io/${page}/" class="card__btn  card__btn--dark" target="_blank">See Demo</a>
             </div>
           </div>
 
